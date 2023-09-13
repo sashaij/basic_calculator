@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=Nunito:wght@300&family=Poppins:wght@300&family=Quicksand&family=Roboto:wght@300&family=Rubik+Iso&family=Special+Elite&display=swap');
+
 body {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    
 }
 
 button {
     height: 4rem;
     width: 4rem;
     font-size: 1.5rem;
+    font-family: 'Nunito', sans-serif;
 }
 
 button#pos-neg{
@@ -19,6 +24,11 @@ button#point{
     width: 8rem;
 }
 
+.main-frame{
+    display: flex;
+    flex-direction: column;
+}
+
 .frame {
     display: flex;
     flex-direction: row;
@@ -26,6 +36,15 @@ button#point{
     justify-content: center;
     width: 16rem;
     height: 20rem;
+}
+
+.display {
+    background-color: grey;
+    width: 16rem;
+    height: 4rem;
+    text-align: center;
+    font-size: 2rem;
+    vertical-align: middle;
 }
 
 .left {
