@@ -1,0 +1,45 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    height: 4rem;
+    width: 4rem;
+    font-size: 1.5rem;
+}
+
+button#pos-neg{
+    width: 8rem;
+}
+
+button#point{
+    width: 8rem;
+}
+
+.frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 16rem;
+    height: 20rem;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.numpad {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
