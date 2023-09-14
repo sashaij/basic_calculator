@@ -40,6 +40,12 @@ const displayContent = function () {
     displayValue.textContent += `${numberOne}`;
   }
 }
+//figure out how to write a function that removes class from
+//any operator button
+
+//adds class to highlight operator buttton
+//being clicked
+btnAdd.addEventListener('click', () => btnAdd.classList.add('active'));
 btnDel.addEventListener('click', () => {
   displayValue.textContent = displayValue.textContent.slice(0, -1);
   //console.log(displayValue.textContent.length);
