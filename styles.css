@@ -6,6 +6,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Nunito', sans-serif;
+    background-color: #fff4f4;
     
 }
 
@@ -14,11 +15,10 @@ button {
     width: 4rem;
     font-size: 1.5rem;
     font-family: 'Nunito', sans-serif;
+    background-color: #FFF6E0;
+    border-radius: .2rem;
 }
 
-button#pos-neg{
-    width: 8rem;
-}
 
 button#point{
     width: 8rem;
@@ -27,6 +27,12 @@ button#point{
 .main-frame{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 17.5rem;
+    height: 26rem;
+    background-color: #61677A;
+    border-radius: .5rem;
 }
 
 .frame {
@@ -39,12 +45,20 @@ button#point{
 }
 
 .display {
-    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    background-color: #D8D9DA;
     width: 16rem;
     height: 4rem;
-    text-align: center;
+    border-radius: .2rem;
+}
+
+
+#curr-value{
     font-size: 2rem;
-    vertical-align: middle;
+    margin: .3rem .5rem;
 }
 
 .left {
