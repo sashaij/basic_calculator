@@ -2,7 +2,7 @@
 
 const buttons = document.querySelector('.btn');
 //display
-const displayValue = document.getElementById('curr-value');
+let displayValue = document.getElementById('curr-value');
 
 //nums
 const btnOne = document.getElementById('one');
@@ -40,7 +40,16 @@ const displayContent = function () {
     displayValue.textContent += `${numberOne}`;
   }
 }
-
+btnDel.addEventListener('click', () => {
+  displayValue.textContent = displayValue.textContent.slice(0, -1);
+  //console.log(displayValue.textContent.length);
+  if (displayValue.textContent.length <= 0) {
+    displayValue.textContent = '0';
+  }
+});
+btnClear.addEventListener('click', () => {
+  displayValue.textContent = '0'
+});
 btnOne.addEventListener('click', () => {
   numberOne = btnOne.textContent;
   displayContent();
@@ -81,6 +90,28 @@ btnZero.addEventListener('click', () => {
   numberOne = btnZero.textContent;
   displayContent();
 });
+
+btnPoint.addEventListener('click', () => {
+  numberOne = btnPoint.textContent;
+  displayValue.textContent += `${numberOne}`;
+})
+
+//toggle between positive and negative numbers
+btnPosNeg.addEventListener('click', () => {
+  if(displayValue.classList.contains('present')) {
+    displayValue.classList.remove('present');
+    //removes first char (which is '-' from the string)
+    displayValue.textContent = displayValue.textContent.slice(1);
+    //does not put minus in front of zero
+  } else if (displayValue.textContent = `${numberOne}` || 
+  displayValue.textContent.length <= 0) {
+    displayValue.textContent = '0';
+  } else {
+    //adds '-' to the string
+    displayValue.textContent = "-" + displayValue.textContent;
+    displayValue.classList.add('present');
+  }
+})
 
 
 const add = function(a, b) {

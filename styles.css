@@ -7,7 +7,6 @@ body {
     justify-content: center;
     font-family: 'Nunito', sans-serif;
     background-color: #fff4f4;
-    
 }
 
 button {
@@ -19,6 +18,11 @@ button {
     border-radius: .2rem;
 }
 
+button:disabled{
+    color: #000000;
+    background-color: #FFF6E0;
+    border-color: #61677A;
+}
 
 button#point{
     width: 8rem;
