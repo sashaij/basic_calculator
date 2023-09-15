@@ -130,12 +130,16 @@ btnDel.addEventListener('click', () => {
   }
   displayValue.textContent.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
   shrinkFont();
+  //---------------
+  numberOneNumber = Number(displayValue.textContent);
+  console.log(numberOneNumber);
 });
 btnClear.addEventListener('click', () => {
     displayValue.textContent = '0';
     numberOneNumber = 0;
     displayValue.classList.remove('present');
     btnPoint.disabled = false;
+    displayValue.style.fontSize = '2rem';
 });
 
 //nums
