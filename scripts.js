@@ -2,9 +2,10 @@
 
 //bugs
 
-//point button stays
-//disabled after point
-//is deleted on a screen
+//new digits added to zero
+//when whole line is deleted
+//and zero appear on the screen
+
 
 //digits added to zero when 
 //page is refreshed
@@ -54,6 +55,15 @@ const displayContent = function () {
   }
 }
 
+const shrinkFont = function () {
+  if (displayValue.textContent.length > 12 && displayValue.textContent.length < 24) {
+    displayValue.style.fontSize = '1rem'
+  } else if (displayValue.textContent.length > 24) {
+    displayValue.style.fontSize = '.5rem';
+  } else if (displayValue.textContent.length < 12) {
+    displayValue.style.fontSize = '2rem';
+  }
+}
 //when we click operator
 //convert string to a number
 //store this number in first variable
@@ -119,6 +129,7 @@ btnDel.addEventListener('click', () => {
     displayValue.textContent = '0';
   }
   displayValue.textContent.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
+  shrinkFont();
 });
 btnClear.addEventListener('click', () => {
     displayValue.textContent = '0';
@@ -132,51 +143,61 @@ btnOne.addEventListener('click', () => {
   numberOne = btnOne.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnTwo.addEventListener('click', () => {
   numberOne = btnTwo.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnThree.addEventListener('click', () => {
   numberOne = btnThree.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnFour.addEventListener('click', () => {
   numberOne = btnFour.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnFive.addEventListener('click', () => {
   numberOne = btnFive.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnSix.addEventListener('click', () => {
   numberOne = btnSix.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnSeven.addEventListener('click', () => {
   numberOne = btnSeven.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnEight.addEventListener('click', () => {
   numberOne = btnEight.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnNine.addEventListener('click', () => {
   numberOne = btnNine.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 btnZero.addEventListener('click', () => {
   numberOne = btnZero.textContent;
   displayContent();
   toNum();
+  shrinkFont();
 });
 
 btnPoint.addEventListener('click', () => {
@@ -184,6 +205,7 @@ btnPoint.addEventListener('click', () => {
   displayValue.textContent += `${numberOne}`;
   toNum();
   btnPoint.disabled = true;
+  shrinkFont();
 })
 
 //toggle between positive and negative numbers
@@ -202,6 +224,7 @@ btnPosNeg.addEventListener('click', () => {
     displayValue.classList.add('present');
   }
   toNum();
+  shrinkFont();
 })
 
 
