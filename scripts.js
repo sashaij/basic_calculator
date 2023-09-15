@@ -1,5 +1,14 @@
 'use strict'
 
+//bugs
+
+//point button stays
+//disabled after point
+//is deleted on a screen
+
+//digits added to zero when 
+//page is refreshed
+
 const buttons = document.querySelector('.btn');
 //display
 let displayValue = document.getElementById('curr-value');
@@ -29,14 +38,16 @@ const btnMultiply = document.getElementById('multiply');
 const btnDivide = document.getElementById('divide');
 const btnEqual = document.getElementById('equal');
 
-let numberOne = 36;
-let numberTwo = 6;
+let numberOne = '0';
+//let numberStart = 0;
 let operator = '*';
-let numberOneNumber;
+let numberOneNumber = 0;
 let numberTwoNumber;
 
+let operandOne;
+
 const displayContent = function () {
-  if (displayValue.textContent === '0') {
+  if (numberOneNumber === 0) {
     displayValue.textContent = `${numberOne}`
   } else {
     displayValue.textContent += `${numberOne}`;
@@ -52,10 +63,15 @@ const toNum = function () {
   numberOneNumber = Number(displayValue.textContent);
   console.log(numberOneNumber);
   numberOne = '';
-  displayValue.textContent = '0';
+  //displayValue.textContent = '0';
 }
-//figure out how to write a function that removes class from
-//any operator button
+
+
+const toEmpty = () => {
+  operandOne = numberOneNumber;
+  numberOneNumber = 0;
+}
+
 
 //highlight operator buttton
 //being clicked
@@ -65,24 +81,35 @@ btnAdd.addEventListener('click', () => {
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
   toNum();
+  toEmpty();
+  btnPoint.disabled = false;
 });
 btnSubstract.addEventListener('click', () => {
   btnSubstract.classList.add('active');
   btnAdd.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
+  toNum();
+  toEmpty();
+  btnPoint.disabled = false;
 });
 btnMultiply.addEventListener('click', () => {
   btnMultiply.classList.add('active');
   btnSubstract.classList.remove('active');
   btnAdd.classList.remove('active');
   btnDivide.classList.remove('active');
+  toNum();
+  toEmpty();
+  btnPoint.disabled = false;
 });
 btnDivide.addEventListener('click', () => {
   btnDivide.classList.add('active');
   btnSubstract.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnAdd.classList.remove('active');
+  toNum();
+  toEmpty();
+  btnPoint.disabled = false;
 });
 
 btnDel.addEventListener('click', () => {
@@ -91,54 +118,72 @@ btnDel.addEventListener('click', () => {
   if (displayValue.textContent.length <= 0) {
     displayValue.textContent = '0';
   }
+  displayValue.textContent.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
 });
 btnClear.addEventListener('click', () => {
-  displayValue.textContent = '0'
+    displayValue.textContent = '0';
+    numberOneNumber = 0;
+    displayValue.classList.remove('present');
+    btnPoint.disabled = false;
 });
+
+//nums
 btnOne.addEventListener('click', () => {
   numberOne = btnOne.textContent;
   displayContent();
+  toNum();
 });
 btnTwo.addEventListener('click', () => {
   numberOne = btnTwo.textContent;
   displayContent();
+  toNum();
 });
 btnThree.addEventListener('click', () => {
   numberOne = btnThree.textContent;
   displayContent();
+  toNum();
 });
 btnFour.addEventListener('click', () => {
   numberOne = btnFour.textContent;
   displayContent();
+  toNum();
 });
 btnFive.addEventListener('click', () => {
   numberOne = btnFive.textContent;
   displayContent();
+  toNum();
 });
 btnSix.addEventListener('click', () => {
   numberOne = btnSix.textContent;
   displayContent();
+  toNum();
 });
 btnSeven.addEventListener('click', () => {
   numberOne = btnSeven.textContent;
   displayContent();
+  toNum();
 });
 btnEight.addEventListener('click', () => {
   numberOne = btnEight.textContent;
   displayContent();
+  toNum();
 });
 btnNine.addEventListener('click', () => {
   numberOne = btnNine.textContent;
   displayContent();
+  toNum();
 });
 btnZero.addEventListener('click', () => {
   numberOne = btnZero.textContent;
   displayContent();
+  toNum();
 });
 
 btnPoint.addEventListener('click', () => {
   numberOne = btnPoint.textContent;
   displayValue.textContent += `${numberOne}`;
+  toNum();
+  btnPoint.disabled = true;
 })
 
 //toggle between positive and negative numbers
@@ -148,7 +193,7 @@ btnPosNeg.addEventListener('click', () => {
     //removes first char (which is '-' from the string)
     displayValue.textContent = displayValue.textContent.slice(1);
     //does not put minus in front of zero
-  } else if (displayValue.textContent = `${numberOne}` || 
+  } else if (displayValue.textContent === '0' || 
   displayValue.textContent.length <= 0) {
     displayValue.textContent = '0';
   } else {
@@ -156,6 +201,7 @@ btnPosNeg.addEventListener('click', () => {
     displayValue.textContent = "-" + displayValue.textContent;
     displayValue.classList.add('present');
   }
+  toNum();
 })
 
 
