@@ -32,6 +32,8 @@ const btnEqual = document.getElementById('equal');
 let numberOne = 36;
 let numberTwo = 6;
 let operator = '*';
+let numberOneNumber;
+let numberTwoNumber;
 
 const displayContent = function () {
   if (displayValue.textContent === '0') {
@@ -40,12 +42,49 @@ const displayContent = function () {
     displayValue.textContent += `${numberOne}`;
   }
 }
+
+//when we click operator
+//convert string to a number
+//store this number in first variable
+//empty the variable with string
+
+const toNum = function () {
+  numberOneNumber = Number(displayValue.textContent);
+  console.log(numberOneNumber);
+  numberOne = '';
+  displayValue.textContent = '0';
+}
 //figure out how to write a function that removes class from
 //any operator button
 
-//adds class to highlight operator buttton
+//highlight operator buttton
 //being clicked
-btnAdd.addEventListener('click', () => btnAdd.classList.add('active'));
+btnAdd.addEventListener('click', () => {
+  btnAdd.classList.add('active');
+  btnSubstract.classList.remove('active');
+  btnMultiply.classList.remove('active');
+  btnDivide.classList.remove('active');
+  toNum();
+});
+btnSubstract.addEventListener('click', () => {
+  btnSubstract.classList.add('active');
+  btnAdd.classList.remove('active');
+  btnMultiply.classList.remove('active');
+  btnDivide.classList.remove('active');
+});
+btnMultiply.addEventListener('click', () => {
+  btnMultiply.classList.add('active');
+  btnSubstract.classList.remove('active');
+  btnAdd.classList.remove('active');
+  btnDivide.classList.remove('active');
+});
+btnDivide.addEventListener('click', () => {
+  btnDivide.classList.add('active');
+  btnSubstract.classList.remove('active');
+  btnMultiply.classList.remove('active');
+  btnAdd.classList.remove('active');
+});
+
 btnDel.addEventListener('click', () => {
   displayValue.textContent = displayValue.textContent.slice(0, -1);
   //console.log(displayValue.textContent.length);
