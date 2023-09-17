@@ -93,6 +93,12 @@ const toEmpty = () => {
   } 
 }
 
+const enableOperator = function () {
+  btnAdd.disabled = false;
+  btnSubstract.disabled = false;
+  btnMultiply.disabled = false;
+  btnDivide.disabled = false;
+}
 
 //highlight operator buttton
 //being clicked
@@ -111,6 +117,7 @@ btnAdd.addEventListener('click', () => {
   }
   operator = "+"
   btnPoint.disabled = false;
+  btnAdd.disabled = true;
 });
 btnSubstract.addEventListener('click', () => {
   btnSubstract.classList.add('active');
@@ -187,60 +194,70 @@ btnOne.addEventListener('click', () => {
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnTwo.addEventListener('click', () => {
   numberOne = btnTwo.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnThree.addEventListener('click', () => {
   numberOne = btnThree.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnFour.addEventListener('click', () => {
   numberOne = btnFour.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnFive.addEventListener('click', () => {
   numberOne = btnFive.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnSix.addEventListener('click', () => {
   numberOne = btnSix.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnSeven.addEventListener('click', () => {
   numberOne = btnSeven.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnEight.addEventListener('click', () => {
   numberOne = btnEight.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnNine.addEventListener('click', () => {
   numberOne = btnNine.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 btnZero.addEventListener('click', () => {
   numberOne = btnZero.textContent;
   displayContent();
   toNum();
   shrinkFont();
+  enableOperator();
 });
 
 btnPoint.addEventListener('click', () => {
