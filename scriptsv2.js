@@ -80,7 +80,8 @@ const operate = function (numbOne, numbTwo, oPerat) {
     let displayValue = [0];
 
     const displayFill = function () {
-        if (displayValue[0] === 0) {
+        if (displayValue[0] === 0 & displayValue[1] !== '.') {
+            //replace first item with current digit
             displayValue.splice(0, 1, currentDigit);
         } else {
             displayValue.push(currentDigit);
@@ -133,16 +134,19 @@ const operate = function (numbOne, numbTwo, oPerat) {
       btnPoint.addEventListener('click', () => {
         currentDigit = '.';
         if (displayValue.length > 0) {
-            displayFill();
+            displayValue.push(currentDigit);
         }
-        btnPoint.disabled = true;
+            display.textContent = displayValue.join(''); 
+            btnPoint.disabled = true;
       })
 
       btnDel.addEventListener('click', () => {
         displayValue.pop();
-        
+        //make current value 0 so it would not
+        //dissapear from the screen 
         if (displayValue.length < 1) {
-          display.textContent = '0';
+            displayValue[0] = 0;
+            display.textContent = displayValue[0];
         } else {
           display.textContent = displayValue.join('');
         }
@@ -158,4 +162,20 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnPoint.disabled = false;
         display.style.fontSize = '2rem';
       });
+
+          //toggle between positive and negative numbers
+        btnPosNeg.addEventListener('click', () => {
+        if(displayValue[0] === '-') {
+          displayValue.splice(0, 1, '');
+        } else if (displayValue[0] === 0 || 
+        displayValue.length < 1) {
+          displayValue = 0;
+        } else {
+          //adds '-' to the string
+          displayValue.splice(0, 1, '-');
+        }
+        
+        //shrinkFont();
+      })
+    
  
