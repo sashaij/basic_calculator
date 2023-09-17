@@ -41,17 +41,18 @@ const btnEqual = document.getElementById('equal');
 
 let numberOne = '0';
 //let numberStart = 0;
-let operator = '*';
+let operator = '+';
 let numberOneNumber = 0;
 let numberTwoNumber;
 
-let operandOne;
+let operandOne = 0;
+let operandTwo = 0;
 
 const displayContent = function () {
   if (numberOneNumber === 0) {
-    displayValue.textContent = `${numberOne}`
+    displayValue.textContent = numberOne.toString()
   } else {
-    displayValue.textContent += `${numberOne}`;
+    displayValue.textContent += numberOne.toString()
   }
 }
 
@@ -76,10 +77,20 @@ const toNum = function () {
   //displayValue.textContent = '0';
 }
 
-
+//operandOne becomes accumulator
+//numberOneNumber is a diplay value
+//operandTwo takes value from numberOneNumber (user input)
 const toEmpty = () => {
+  if (operandOne === 0){
   operandOne = numberOneNumber;
   numberOneNumber = 0;
+  } else if (operandOne !== 0) {
+    operandTwo = numberOneNumber;
+    operate (operandOne, operandTwo, operator);
+    displayValue.textContent = operandOne;
+    operandTwo = 0;
+    numberOneNumber = 0;
+  }
 }
 
 
@@ -90,6 +101,7 @@ btnAdd.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
+  operator = "+"
   toNum();
   toEmpty();
   btnPoint.disabled = false;
@@ -99,6 +111,7 @@ btnSubstract.addEventListener('click', () => {
   btnAdd.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
+  operator = '-'
   toNum();
   toEmpty();
   btnPoint.disabled = false;
@@ -108,6 +121,7 @@ btnMultiply.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnAdd.classList.remove('active');
   btnDivide.classList.remove('active');
+  operator = '*'
   toNum();
   toEmpty();
   btnPoint.disabled = false;
@@ -117,6 +131,7 @@ btnDivide.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnAdd.classList.remove('active');
+  operator = '/'
   toNum();
   toEmpty();
   btnPoint.disabled = false;
@@ -258,14 +273,16 @@ const multiply = function(num1, ...nums) {
 
   const operate = function (numbOne, numbTwo, oPerat) {
     if(oPerat === '+') {
-        console.log(add(numbOne, numbTwo));
+        console.log('sum ' + add(numbOne, numbTwo));
+        return operandOne = add(numbOne, numbTwo);
     } else if (oPerat === '-') {
         console.log(subtract(numbOne, numbTwo));
+        return subtract(numbOne, numbTwo);
     } else if (oPerat === '*') {
         console.log(multiply(numbOne, numbTwo));
+        return multiply(numbOne, numbTwo);
     } else if (oPerat === '/') {
         console.log(divide(numbOne, numbTwo));
+        return divide(numbOne, numbTwo);
     }
   }
-
-  operate(numberOne, numberTwo, operator);
