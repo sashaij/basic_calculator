@@ -84,13 +84,13 @@ const toEmpty = () => {
   if (operandOne === 0){
   operandOne = numberOneNumber;
   numberOneNumber = 0;
-  } else if (operandOne !== 0) {
+  } else if (operandOne !== 0 /* && buttons.classList.contains('active') */) {
     operandTwo = numberOneNumber;
     operate (operandOne, operandTwo, operator);
     displayValue.textContent = operandOne;
     operandTwo = 0;
     numberOneNumber = 0;
-  }
+  } 
 }
 
 
@@ -101,9 +101,15 @@ btnAdd.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
+  if (operator === '+') {
+    toNum();
+    toEmpty();
+  } else {
+    operator = '+'
+    //toNum();
+    toEmpty();
+  }
   operator = "+"
-  toNum();
-  toEmpty();
   btnPoint.disabled = false;
 });
 btnSubstract.addEventListener('click', () => {
@@ -111,9 +117,15 @@ btnSubstract.addEventListener('click', () => {
   btnAdd.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnDivide.classList.remove('active');
+  if (operator === '-') {
+    toNum();
+    toEmpty();
+  } else {
+    operator = '-'
+    //toNum();
+    toEmpty();
+  }
   operator = '-'
-  toNum();
-  toEmpty();
   btnPoint.disabled = false;
 });
 btnMultiply.addEventListener('click', () => {
@@ -121,9 +133,15 @@ btnMultiply.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnAdd.classList.remove('active');
   btnDivide.classList.remove('active');
+  if (operator === '*') {
+    toNum();
+    toEmpty();
+  } else {
+    operator = '*'
+    //toNum();
+    toEmpty();
+  }
   operator = '*'
-  toNum();
-  toEmpty();
   btnPoint.disabled = false;
 });
 btnDivide.addEventListener('click', () => {
@@ -131,9 +149,15 @@ btnDivide.addEventListener('click', () => {
   btnSubstract.classList.remove('active');
   btnMultiply.classList.remove('active');
   btnAdd.classList.remove('active');
+  if (operator === '/') {
+    toNum();
+    toEmpty();
+  } else {
+    operator = '/'
+    //toNum();
+    toEmpty();
+  }
   operator = '/'
-  toNum();
-  toEmpty();
   btnPoint.disabled = false;
 });
 
@@ -276,13 +300,13 @@ const multiply = function(num1, ...nums) {
         console.log('sum ' + add(numbOne, numbTwo));
         return operandOne = add(numbOne, numbTwo);
     } else if (oPerat === '-') {
-        console.log(subtract(numbOne, numbTwo));
-        return subtract(numbOne, numbTwo);
+        console.log('diff ' + subtract(numbOne, numbTwo));
+        return operandOne = subtract(numbOne, numbTwo);
     } else if (oPerat === '*') {
-        console.log(multiply(numbOne, numbTwo));
-        return multiply(numbOne, numbTwo);
+        console.log('mult ' + multiply(numbOne, numbTwo));
+        return operandOne = multiply(numbOne, numbTwo);
     } else if (oPerat === '/') {
-        console.log(divide(numbOne, numbTwo));
-        return divide(numbOne, numbTwo);
+        console.log('div ' + divide(numbOne, numbTwo));
+        return operandOne = divide(numbOne, numbTwo);
     }
   }
