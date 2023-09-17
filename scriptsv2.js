@@ -144,6 +144,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayValue.pop();
         //make current value 0 so it would not
         //dissapear from the screen 
+        if (displayValue.length === 1 && displayValue[0] === '-') {
+            displayValue = [0];
+            display.textContent = displayValue.join[''];
+        }
         if (displayValue.length < 1) {
             displayValue[0] = 0;
             display.textContent = displayValue[0];
@@ -167,12 +171,18 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnPosNeg.addEventListener('click', () => {
         if(displayValue[0] === '-') {
           displayValue.splice(0, 1, '');
+          display.textContent = displayValue.join('');
         } else if (displayValue[0] === 0 || 
         displayValue.length < 1) {
           displayValue = 0;
+          display.textContent = displayValue.join('');
         } else {
           //adds '-' to the string
-          displayValue.splice(0, 1, '-');
+          if (displayValue.length > 0 && 
+              displayValue[0] !== 0) {
+              displayValue.unshift('-');
+          }
+          display.textContent = displayValue.join('');
         }
         
         //shrinkFont();
