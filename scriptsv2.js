@@ -77,10 +77,14 @@ const operate = function (numbOne, numbTwo, oPerat) {
     let operator = '';
 
     let currentDigit = 0; //
-    let displayValue = [];
+    let displayValue = [0];
 
     const displayFill = function () {
-        displayValue.push(currentDigit);
+        if (displayValue[0] === 0) {
+            displayValue.splice(0, 1, currentDigit);
+        } else {
+            displayValue.push(currentDigit);
+        }
         display.textContent = displayValue.join(''); 
     }
 
@@ -128,7 +132,30 @@ const operate = function (numbOne, numbTwo, oPerat) {
 
       btnPoint.addEventListener('click', () => {
         currentDigit = '.';
-        displayFill();
+        if (displayValue.length > 0) {
+            displayFill();
+        }
         btnPoint.disabled = true;
       })
+
+      btnDel.addEventListener('click', () => {
+        displayValue.pop();
+        
+        if (displayValue.length < 1) {
+          display.textContent = '0';
+        } else {
+          display.textContent = displayValue.join('');
+        }
+        displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
+        //shrinkFont();
+        //---------------
+      });
+      btnClear.addEventListener('click', () => {
+        currentDigit = 0;
+        displayValue = [0];
+        display.textContent = 0;
+        //displayValue.classList.remove('present');
+        btnPoint.disabled = false;
+        display.style.fontSize = '2rem';
+      });
  
