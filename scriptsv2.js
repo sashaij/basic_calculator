@@ -173,7 +173,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
           //toggle between positive and negative numbers
         btnPosNeg.addEventListener('click', () => {
         if(displayValue[0] === '-') {
-          displayValue.splice(0, 1, '');
+          displayValue.splice(0, 1);
           display.textContent = displayValue.join('');
         } else if (displayValue[0] === 0 || 
         displayValue.length < 1) {
