@@ -167,6 +167,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
         } else {
           display.textContent = displayValue.join('');
         }
+            //zero operans if there is only one char displayed
+        if(displayValue.length === 1) {
+            operands = [];
+        }
         displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
         //shrinkFont();
         //---------------
@@ -188,8 +192,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         if(displayValue[0] === '-') {
           displayValue.splice(0, 1);
           display.textContent = displayValue.join('');
-        } else if (displayValue[0] === 0 || 
-        displayValue.length < 1) {
+        } else if (displayValue[0] === 0 && operands.length < 1) {
           displayValue = [0];
           display.textContent = displayValue.join('');
         } else {
@@ -228,6 +231,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     } else if (operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
         displayValue = [0];
     } else {
         operands.push(Number(displayValue.join('')));
