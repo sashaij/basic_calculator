@@ -138,6 +138,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         }
             display.textContent = displayValue.join(''); 
             btnPoint.disabled = true;
+            console.log(displayValue + ' point') ;
       })
 
       btnDel.addEventListener('click', () => {
@@ -149,7 +150,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
             display.textContent = displayValue.join[''];
         }
         if (displayValue.length < 1) {
-            displayValue[0] = 0;
+            displayValue = [0];
             display.textContent = displayValue[0];
         } else {
           display.textContent = displayValue.join('');
@@ -157,6 +158,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
         //shrinkFont();
         //---------------
+        console.log(displayValue + ' del') ;
       });
       btnClear.addEventListener('click', () => {
         currentDigit = 0;
@@ -165,6 +167,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         //displayValue.classList.remove('present');
         btnPoint.disabled = false;
         display.style.fontSize = '2rem';
+        console.log(displayValue + ' clear') ;
       });
 
           //toggle between positive and negative numbers
@@ -174,7 +177,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
           display.textContent = displayValue.join('');
         } else if (displayValue[0] === 0 || 
         displayValue.length < 1) {
-          displayValue = 0;
+          displayValue = [0];
           display.textContent = displayValue.join('');
         } else {
           //adds '-' to the string
@@ -184,7 +187,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
           }
           display.textContent = displayValue.join('');
         }
-        
+        console.log(displayValue + ' pos/neg') ;
         //shrinkFont();
       })
     
