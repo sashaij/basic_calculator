@@ -89,6 +89,13 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.textContent = displayValue.join(''); 
     }
 
+    const deletePoint = function () {
+        if (displayValue[displayValue.length - 1] === '.') {
+            displayValue.pop();
+            display.textContent = displayValue.join('');
+        }
+    }
+
     //input
       btnOne.addEventListener('click', () => {
         currentDigit = 1;
@@ -180,13 +187,13 @@ const operate = function (numbOne, numbTwo, oPerat) {
           displayValue = [0];
           display.textContent = displayValue.join('');
         } else {
-          //adds '-' to the string
           if (displayValue.length > 0 && 
               displayValue[0] !== 0) {
               displayValue.unshift('-');
           }
           display.textContent = displayValue.join('');
         }
+        deletePoint();
         console.log(displayValue + ' pos/neg') ;
         //shrinkFont();
       })
