@@ -103,6 +103,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
 
     const displayEverything = function () {
         console.log('operands: ' + operands);
+        console.log('operands lenght: ' + operands.length);
         console.log('operator: ' + operator);
         console.log('display-value: ' + displayValue);
         console.log('display-text-content: ' + display.textContent);
@@ -110,9 +111,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
     }
 
     const result = function () {
-        if (operands.length === 2) {
-            operands.pop();
-        }
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
         operate(operands[0], operands[1], operator);
@@ -253,9 +251,17 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     
-    operator = '+';
-    operands.push(Number(displayValue.join('')));
-    displayValue = [0];
+    operator = '+'
+    if (operands.length === 2) {
+        result();
+        operands.pop();
+    } else if (operands.length === 1) {
+        result();
+    } 
+    else {     
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+    }
 
     displayEverything();
   });
