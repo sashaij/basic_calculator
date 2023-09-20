@@ -117,55 +117,72 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.textContent = operands[0];
     }
 
+    const enableOperator = function () {
+        btnMultiply.disabled = false;
+        btnAdd.disabled = false;
+        btnSubstract.disabled = false;
+        btnDivide.disabled = false; 
+    }
+
     //input
       btnOne.addEventListener('click', () => {
         currentDigit = 1;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnTwo.addEventListener('click', () => {
         currentDigit = 2;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnThree.addEventListener('click', () => {
         currentDigit = 3;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnFour.addEventListener('click', () => {
         currentDigit = 4;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnFive.addEventListener('click', () => {
         currentDigit = 5;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnSix.addEventListener('click', () => {
         currentDigit = 6;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnSeven.addEventListener('click', () => {
         currentDigit = 7;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnEight.addEventListener('click', () => {
         currentDigit = 8;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnNine.addEventListener('click', () => {
         currentDigit = 9;
         displayFill();
+        enableOperator();
         displayEverything();
       });
       btnZero.addEventListener('click', () => {
         currentDigit = 0;
         displayFill();
+        enableOperator();
         displayEverything();
       });
 
@@ -248,21 +265,37 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnSubstract.classList.remove('active');
     btnMultiply.classList.remove('active');
     btnDivide.classList.remove('active');
-    btnPoint.disabled = false;
-    deletePoint();
     
-    operator = '+'
-    if (operands.length === 2) {
-        result();
-        operands.pop();
-    } else if (operands.length === 1) {
-        result();
-    } 
-    else {     
+/*     if (operator !== '+') {
+        operator = '+';
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
+    } else */ if (operator !== '+' && operands.length === 1) {
+        operator = '+';
+        //operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        //result();
+    } else {
+        operator = '+'
+        if (operands.length === 2) {
+            result();
+            operands.pop();
+        } else if (operands.length === 1) {
+            result();
+        } 
+        else {     
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+        } 
+        btnAdd.disabled = true;
+        btnSubstract.disabled = false;
+        btnMultiply.disabled = false;
+        btnDivide.disabled = false; 
     }
-
+    
+    
+    btnPoint.disabled = false;
+    deletePoint();
     displayEverything();
   });
 
@@ -272,29 +305,76 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnAdd.classList.remove('active');
     btnMultiply.classList.remove('active');
     btnDivide.classList.remove('active');
+    
+  /*   if (operator !== '-') {
+        operator = '-';
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+    } else */ if (operator !== '-' && operands.length === 1) {
+        operator = '-';
+        //operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        //result();
+    } else {
+        operator = '-'
+        if (operands.length === 2) {
+            result();
+            operands.pop();
+        } else if (operands.length === 1) {
+            result();
+        } 
+        else {     
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+        }  
+    }
+    
     btnPoint.disabled = false;
     deletePoint();
-
-    operator = '-';
-    operands.push(Number(displayValue.join('')));
-    displayValue = [0];
-
     displayEverything();
+
+    btnSubstract.disabled = true;
+    btnAdd.disabled = false;
+    btnMultiply.disabled = false;
+    btnDivide.disabled = false; 
   });
   btnMultiply.addEventListener('click', () => {
     btnMultiply.classList.add('active');
     btnSubstract.classList.remove('active');
     btnAdd.classList.remove('active');
     btnDivide.classList.remove('active');
-
-    operator = '*';
-    operands.push(Number(displayValue.join('')));
-    displayValue = [0];
+    
+    if (operator !== '*') {
+        operator = '*';
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+    } else if (operator !== '*' && operands.length === 2) {
+        operator = '*';
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        result(); 
+    } else {
+        operator = '*'
+        if (operands.length === 2) {
+            result();
+            operands.pop();
+        } else if (operands.length === 1) {
+            result();
+        } 
+        else {     
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+        }  
+    }
     
     btnPoint.disabled = false;
     deletePoint();
-
     displayEverything();
+
+    btnMultiply.disabled = true;
+    btnAdd.disabled = false;
+    btnSubstract.disabled = false;
+    btnDivide.disabled = false; 
   });
   btnDivide.addEventListener('click', () => {
     btnDivide.classList.add('active');
@@ -302,9 +382,29 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnMultiply.classList.remove('active');
     btnAdd.classList.remove('active');
 
-    operator = '/';
-    operands.push(Number(displayValue.join('')));
-    displayValue = [0];
+    if (operator !== '/') {
+        operator = '/';
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+    
+    } else if (operator !== '/' && operands.length === 2) {
+        operator = '/';
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        result();
+    } else {
+        operator = '/'
+        if (operands.length === 2) {
+            result();
+            operands.pop();
+        } else if (operands.length === 1) {
+            result();
+        } 
+        else {     
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+        }  
+    }
     
     btnPoint.disabled = false;
     deletePoint();
@@ -328,6 +428,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayValue = [0];
     } */
     displayEverything();
+    btnDivide.disabled = true; 
+    btnAdd.disabled = false;
+    btnSubstract.disabled = false;
+    btnMultiply.disabled = false;
   });
   btnEqual.addEventListener('click', () => {
     result();
