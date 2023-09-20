@@ -101,46 +101,74 @@ const operate = function (numbOne, numbTwo, oPerat) {
         }
     }
 
+    const displayEverything = function () {
+        console.log('operands: ' + operands);
+        console.log('operator: ' + operator);
+        console.log('display-value: ' + displayValue);
+        console.log('display-text-content: ' + display.textContent);
+        console.log('---------------------------------');
+    }
+
+    const result = function () {
+        if (operands.length === 2) {
+            operands.pop();
+        }
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+    }
+
     //input
       btnOne.addEventListener('click', () => {
         currentDigit = 1;
         displayFill();
+        displayEverything();
       });
       btnTwo.addEventListener('click', () => {
         currentDigit = 2;
         displayFill();
+        displayEverything();
       });
       btnThree.addEventListener('click', () => {
         currentDigit = 3;
         displayFill();
+        displayEverything();
       });
       btnFour.addEventListener('click', () => {
         currentDigit = 4;
         displayFill();
+        displayEverything();
       });
       btnFive.addEventListener('click', () => {
         currentDigit = 5;
         displayFill();
+        displayEverything();
       });
       btnSix.addEventListener('click', () => {
         currentDigit = 6;
         displayFill();
+        displayEverything();
       });
       btnSeven.addEventListener('click', () => {
         currentDigit = 7;
         displayFill();
+        displayEverything();
       });
       btnEight.addEventListener('click', () => {
         currentDigit = 8;
         displayFill();
+        displayEverything();
       });
       btnNine.addEventListener('click', () => {
         currentDigit = 9;
         displayFill();
+        displayEverything();
       });
       btnZero.addEventListener('click', () => {
         currentDigit = 0;
         displayFill();
+        displayEverything();
       });
 
       btnPoint.addEventListener('click', () => {
@@ -151,6 +179,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
             display.textContent = displayValue.join(''); 
             btnPoint.disabled = true;
             console.log(displayValue + ' point') ;
+            displayEverything();
       })
 
       btnDel.addEventListener('click', () => {
@@ -175,6 +204,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         //shrinkFont();
         //---------------
         console.log(displayValue + ' del') ;
+        displayEverything();
       });
       btnClear.addEventListener('click', () => {
         currentDigit = 0;
@@ -185,6 +215,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.style.fontSize = '2rem';
         console.log(displayValue + ' clear') ;
         operands = [];
+        displayEverything();
       });
 
           //toggle between positive and negative numbers
@@ -205,6 +236,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         deletePoint();
         console.log(displayValue + ' pos/neg') ;
         //shrinkFont();
+        displayEverything();
       })
     
 
@@ -218,11 +250,61 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnSubstract.classList.remove('active');
     btnMultiply.classList.remove('active');
     btnDivide.classList.remove('active');
-    operator = '+';
     btnPoint.disabled = false;
     deletePoint();
     
+    operator = '+';
+    operands.push(Number(displayValue.join('')));
+    displayValue = [0];
+
+    displayEverything();
+  });
+
+
+  btnSubstract.addEventListener('click', () => {
+    btnSubstract.classList.add('active');
+    btnAdd.classList.remove('active');
+    btnMultiply.classList.remove('active');
+    btnDivide.classList.remove('active');
+    btnPoint.disabled = false;
+    deletePoint();
+
+    operator = '-';
+    operands.push(Number(displayValue.join('')));
+    displayValue = [0];
+
+    displayEverything();
+  });
+  btnMultiply.addEventListener('click', () => {
+    btnMultiply.classList.add('active');
+    btnSubstract.classList.remove('active');
+    btnAdd.classList.remove('active');
+    btnDivide.classList.remove('active');
+
+    operator = '*';
+    operands.push(Number(displayValue.join('')));
+    displayValue = [0];
+    
+    btnPoint.disabled = false;
+    deletePoint();
+
+    displayEverything();
+  });
+  btnDivide.addEventListener('click', () => {
+    btnDivide.classList.add('active');
+    btnSubstract.classList.remove('active');
+    btnMultiply.classList.remove('active');
+    btnAdd.classList.remove('active');
+
+    operator = '/';
+    operands.push(Number(displayValue.join('')));
+    displayValue = [0];
+    
+    btnPoint.disabled = false;
+    deletePoint();
+/* 
     if (operands.length === 2) {
+        operator = '/';
         operands.pop();
         operands.push(Number(displayValue.join('')));
         operate(operands[0], operands[1], operator);
@@ -233,62 +315,16 @@ const operate = function (numbOne, numbTwo, oPerat) {
         operate(operands[0], operands[1], operator);
         display.textContent = operands[0];
         displayValue = [0];
+        operator = '/';
     } else {
         operands.push(Number(displayValue.join('')));
         //operate(operands[0], operands[1], operator);
         displayValue = [0];
-    }
-  });
-    //algo
-    //input 2
-    //press operator button
-    //--probably disable operator button
-    //--until num button is pressed
-    //'join' array
-    //transform it into a number
-    //pass it to operandOne
-    //make displayValue = [0]
-    //input 2
-    //press operator or equal button
-    //'join' array
-    //transform it into a number
-    //pass it to operandTwo
-    //perform opertion on these numbers
-    //pass the result to operandOne
-    //make operandTwo zero
-    //make displayValue = [0];
-    //display.textContent = operandOne;
-
-  btnSubstract.addEventListener('click', () => {
-    btnSubstract.classList.add('active');
-    btnAdd.classList.remove('active');
-    btnMultiply.classList.remove('active');
-    btnDivide.classList.remove('active');
-    operator = '-';
-    btnPoint.disabled = false;
-    deletePoint();
-  });
-  btnMultiply.addEventListener('click', () => {
-    btnMultiply.classList.add('active');
-    btnSubstract.classList.remove('active');
-    btnAdd.classList.remove('active');
-    btnDivide.classList.remove('active');
-
-    operator = '*'
-    btnPoint.disabled = false;
-    deletePoint();
-  });
-  btnDivide.addEventListener('click', () => {
-    btnDivide.classList.add('active');
-    btnSubstract.classList.remove('active');
-    btnMultiply.classList.remove('active');
-    btnAdd.classList.remove('active');
-    operator = '/'
-    btnPoint.disabled = false;
-    deletePoint();
+    } */
+    displayEverything();
   });
   btnEqual.addEventListener('click', () => {
-
+    result();
   })
   
  
