@@ -266,21 +266,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnMultiply.classList.remove('active');
         btnDivide.classList.remove('active');
 
-
-    
-/*     if (operator !== '+') {
-        operator = '+';
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-    } else */ 
-
-   /*  const result = function () {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-    } */
-
         if (operator !== '+' && operands.length === 1) {
             operands.push(Number(displayValue.join('')));
             displayValue = [0];
@@ -288,7 +273,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
             display.textContent = operands[0];
             operands.pop();
             operator = '+';
-            //result();
         } else if (operator === '+' & operands.length === 1) {
             operands.push(Number(displayValue.join('')));
             displayValue = [0];
@@ -300,25 +284,15 @@ const operate = function (numbOne, numbTwo, oPerat) {
             displayValue = [0];
             operator = '+';
         }
-/*             operator = '+'
-            if (operands.length === 2) {
-            result();
-            operands.pop();
-        } else if (operands.length === 1) {
-                 result();
-        } else {     
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-        }  */
-    
-    btnAdd.disabled = true;
-    btnSubstract.disabled = false;
-    btnMultiply.disabled = false;
-    btnDivide.disabled = false; 
-    
-    btnPoint.disabled = false;
-    deletePoint();
-    displayEverything();
+  
+        btnAdd.disabled = true;
+        btnSubstract.disabled = false;
+        btnMultiply.disabled = false;
+        btnDivide.disabled = false; 
+        
+        btnPoint.disabled = false;
+        deletePoint();
+        displayEverything();
   });
 
 
@@ -327,12 +301,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnAdd.classList.remove('active');
     btnMultiply.classList.remove('active');
     btnDivide.classList.remove('active');
-    
-  /*   if (operator !== '-') {
-        operator = '-';
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-    } else */ 
+
     if (operator !== '-' && operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
@@ -340,7 +309,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.textContent = operands[0];
         operands.pop();
         operator = '-';
-        //result();
     } else if (operator === '-' & operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
@@ -352,17 +320,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayValue = [0];
         operator = '-';
     }
-        /*         operator = '-'
-                if (operands.length === 2) {
-                    result();
-                    operands.pop();
-                } else if (operands.length === 1) {
-                    result();
-                } 
-                else {     
-                    operands.push(Number(displayValue.join('')));
-                    displayValue = [0];
-                }   */
     
     btnPoint.disabled = false;
     deletePoint();
@@ -373,6 +330,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnMultiply.disabled = false;
     btnDivide.disabled = false; 
   });
+
   btnMultiply.addEventListener('click', () => {
     btnMultiply.classList.add('active');
     btnSubstract.classList.remove('active');
@@ -386,7 +344,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.textContent = operands[0];
         operands.pop();
         operator = '*';
-        //result();
     } else if (operator === '*' & operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
@@ -408,6 +365,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnSubstract.disabled = false;
     btnDivide.disabled = false; 
   });
+
   btnDivide.addEventListener('click', () => {
     btnDivide.classList.add('active');
     btnSubstract.classList.remove('active');
@@ -421,7 +379,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         display.textContent = operands[0];
         operands.pop();
         operator = '/';
-        //result();
     } else if (operator === '/' & operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
@@ -436,53 +393,32 @@ const operate = function (numbOne, numbTwo, oPerat) {
     
     btnPoint.disabled = false;
     deletePoint();
-/* 
-    if (operands.length === 2) {
-        operator = '/';
-        operands.pop();
-        operands.push(Number(displayValue.join('')));
-        operate(operands[0], operands[1], operator);
-        displayValue = [0];
-        display.textContent = operands[0]; 
-    } else if (operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        displayValue = [0];
-        operator = '/';
-    } else {
-        operands.push(Number(displayValue.join('')));
-        //operate(operands[0], operands[1], operator);
-        displayValue = [0];
-    } */
     displayEverything();
     btnDivide.disabled = true; 
     btnAdd.disabled = false;
     btnSubstract.disabled = false;
     btnMultiply.disabled = false;
   });
+
   btnEqual.addEventListener('click', () => {
-    result();
+    if (operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
+        operator = '-';
+    } else if (operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
+    } else {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operator = '-';
+    }
   })
   
  
-////////////////////
-let operatr = '*';
-const operatedArr = [2, 3];
-const operate2 = function (numbOne, numbTwo, oPerat) {
-    if(oPerat === '+') {
-        console.log('sum ' + add(numbOne, numbTwo));
-        return operandOne = add(numbOne, numbTwo);
-    } else if (oPerat === '-') {
-        console.log('diff ' + subtract(numbOne, numbTwo));
-        return operandOne = subtract(numbOne, numbTwo);
-    } else if (oPerat === '*') {
-        console.log('mult ' + multiply(numbOne, numbTwo));
-        return operandOne = multiply(numbOne, numbTwo);
-    } else if (oPerat === '/') {
-        console.log('div ' + divide(numbOne, numbTwo));
-        return operandOne = divide(numbOne, numbTwo);
-    }
-  }
-
-  operate2(operatedArr[0], operatedArr[1], operatr);
