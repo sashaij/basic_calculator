@@ -259,10 +259,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
         if(displayValue[0] === '-') {
           displayValue.splice(0, 1);
           display.textContent = displayValue.join('');
-        } else if (displayValue[0] === 0 && operands.length < 1) {
+        } /* else if (displayValue[0] === 0 && operands.length < 1) {
           displayValue = [0];
           display.textContent = displayValue.join('');
-        } else {
+        }  */else {
           if (displayValue.length > 0 && 
               displayValue[0] !== 0) {
               displayValue.unshift('-');
@@ -271,7 +271,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
         }
         deletePoint();
         console.log(displayValue + ' pos/neg') ;
-        //shrinkFont();
         displayEverything();
       })
     
@@ -305,11 +304,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
             displayValue = [0];
             operator = '+';
         }
-  
-/*         btnAdd.disabled = true;
-        btnSubstract.disabled = false;
-        btnMultiply.disabled = false;
-        btnDivide.disabled = false;  */
 
         btnPoint.disabled = false;
         deletePoint();
@@ -345,10 +339,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
-/*     btnSubstract.disabled = true;
-    btnAdd.disabled = false;
-    btnMultiply.disabled = false;
-    btnDivide.disabled = false;  */
   });
 
   btnMultiply.addEventListener('click', () => {
@@ -379,10 +369,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
-/*     btnMultiply.disabled = true;
-    btnAdd.disabled = false;
-    btnSubstract.disabled = false;
-    btnDivide.disabled = false;  */
   });
 
   btnDivide.addEventListener('click', () => {

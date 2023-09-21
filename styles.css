@@ -28,6 +28,10 @@ button#point{
     width: 8rem;
 }
 
+button#delete {
+    width: 8rem;
+}
+
 .main-frame{
     display: flex;
     flex-direction: column;
@@ -87,6 +91,7 @@ button#point{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 12rem;
 }
 
 .active {
