@@ -92,3 +92,7 @@ button#point{
 .active {
     border: 3px solid #ffbb5c ;
 }
+
+.operator:disabled {
+    border: 3px solid #ffbb5c ;
+}

@@ -38,13 +38,13 @@ const operate = function (numbOne, numbTwo, oPerat) {
         return operands[0] = add(numbOne, numbTwo);
     } else if (oPerat === '-') {
         console.log('diff ' + subtract(numbOne, numbTwo));
-        return operandOne = subtract(numbOne, numbTwo);
+        return operands[0] = subtract(numbOne, numbTwo);
     } else if (oPerat === '*') {
         console.log('mult ' + multiply(numbOne, numbTwo));
-        return operandOne = multiply(numbOne, numbTwo);
+        return operands[0] = multiply(numbOne, numbTwo);
     } else if (oPerat === '/') {
         console.log('div ' + divide(numbOne, numbTwo));
-        return operandOne = divide(numbOne, numbTwo);
+        return operands[0] = divide(numbOne, numbTwo);
     }
   }
 
@@ -261,38 +261,60 @@ const operate = function (numbOne, numbTwo, oPerat) {
 
 
     btnAdd.addEventListener('click', () => {
-    btnAdd.classList.add('active');
-    btnSubstract.classList.remove('active');
-    btnMultiply.classList.remove('active');
-    btnDivide.classList.remove('active');
+        btnAdd.classList.add('active');
+        btnSubstract.classList.remove('active');
+        btnMultiply.classList.remove('active');
+        btnDivide.classList.remove('active');
+
+
     
 /*     if (operator !== '+') {
         operator = '+';
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-    } else */ if (operator !== '+' && operands.length === 1) {
-        operator = '+';
-        //operands.push(Number(displayValue.join('')));
+    } else */ 
+
+   /*  const result = function () {
+        operands.push(Number(displayValue.join('')));
         displayValue = [0];
-        //result();
-    } else {
-        operator = '+'
-        if (operands.length === 2) {
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+    } */
+
+        if (operator !== '+' && operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+            operator = '+';
+            //result();
+        } else if (operator === '+' & operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+        } else {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operator = '+';
+        }
+/*             operator = '+'
+            if (operands.length === 2) {
             result();
             operands.pop();
         } else if (operands.length === 1) {
-            result();
-        } 
-        else {     
+                 result();
+        } else {     
             operands.push(Number(displayValue.join('')));
             displayValue = [0];
-        } 
-        btnAdd.disabled = true;
-        btnSubstract.disabled = false;
-        btnMultiply.disabled = false;
-        btnDivide.disabled = false; 
-    }
+        }  */
     
+    btnAdd.disabled = true;
+    btnSubstract.disabled = false;
+    btnMultiply.disabled = false;
+    btnDivide.disabled = false; 
     
     btnPoint.disabled = false;
     deletePoint();
@@ -310,24 +332,37 @@ const operate = function (numbOne, numbTwo, oPerat) {
         operator = '-';
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-    } else */ if (operator !== '-' && operands.length === 1) {
-        operator = '-';
-        //operands.push(Number(displayValue.join('')));
+    } else */ 
+    if (operator !== '-' && operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
         displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
+        operator = '-';
         //result();
+    } else if (operator === '-' & operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
     } else {
-        operator = '-'
-        if (operands.length === 2) {
-            result();
-            operands.pop();
-        } else if (operands.length === 1) {
-            result();
-        } 
-        else {     
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-        }  
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operator = '-';
     }
+        /*         operator = '-'
+                if (operands.length === 2) {
+                    result();
+                    operands.pop();
+                } else if (operands.length === 1) {
+                    result();
+                } 
+                else {     
+                    operands.push(Number(displayValue.join('')));
+                    displayValue = [0];
+                }   */
     
     btnPoint.disabled = false;
     deletePoint();
@@ -344,27 +379,24 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnAdd.classList.remove('active');
     btnDivide.classList.remove('active');
     
-    if (operator !== '*') {
-        operator = '*';
+    if (operator !== '*' && operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-    } else if (operator !== '*' && operands.length === 2) {
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
         operator = '*';
+        //result();
+    } else if (operator === '*' & operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-        result(); 
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
     } else {
-        operator = '*'
-        if (operands.length === 2) {
-            result();
-            operands.pop();
-        } else if (operands.length === 1) {
-            result();
-        } 
-        else {     
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-        }  
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operator = '*';
     }
     
     btnPoint.disabled = false;
@@ -382,28 +414,24 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnMultiply.classList.remove('active');
     btnAdd.classList.remove('active');
 
-    if (operator !== '/') {
-        operator = '/';
+    if (operator !== '/' && operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-    
-    } else if (operator !== '/' && operands.length === 2) {
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
         operator = '/';
+        //result();
+    } else if (operator === '/' & operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-        result();
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
     } else {
-        operator = '/'
-        if (operands.length === 2) {
-            result();
-            operands.pop();
-        } else if (operands.length === 1) {
-            result();
-        } 
-        else {     
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-        }  
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operator = '/';
     }
     
     btnPoint.disabled = false;
