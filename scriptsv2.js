@@ -124,6 +124,14 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnDivide.disabled = false; 
     }
 
+    const disableDel = function () {
+        if (operands[0].isInteger() === false &&
+         operands.length > 0) {
+            btnDel.disabled = true;
+        }
+    }
+
+
     //input
       btnOne.addEventListener('click', () => {
         currentDigit = 1;
@@ -187,14 +195,27 @@ const operate = function (numbOne, numbTwo, oPerat) {
       });
 
       btnPoint.addEventListener('click', () => {
-        currentDigit = '.';
-        if (displayValue.length > 0) {
+        if (operator !== '') {
+            if (display.textContent.includes('.')) {
+                return
+            }
+            currentDigit = '.';
             displayValue.push(currentDigit);
-        }
-            display.textContent = displayValue.join(''); 
+            display.textContent = displayValue.join('');
+            btnPoint.disabled = true;
+            displayEverything();
+        } else {
+            if (display.textContent.includes('.')) {
+                return
+            }
+            currentDigit = '.';
+            displayValue.push(currentDigit);
+            display.textContent = displayValue.join('');
             btnPoint.disabled = true;
             console.log(displayValue + ' point') ;
             displayEverything();
+        }
+
       })
 
       btnDel.addEventListener('click', () => {
@@ -225,7 +246,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         currentDigit = 0;
         displayValue = [0];
         display.textContent = 0;
-        //displayValue.classList.remove('present');
+        operator = '';
         btnPoint.disabled = false;
         display.style.fontSize = '2rem';
         console.log(displayValue + ' clear') ;
@@ -285,11 +306,11 @@ const operate = function (numbOne, numbTwo, oPerat) {
             operator = '+';
         }
   
-        btnAdd.disabled = true;
+/*         btnAdd.disabled = true;
         btnSubstract.disabled = false;
         btnMultiply.disabled = false;
-        btnDivide.disabled = false; 
-        
+        btnDivide.disabled = false;  */
+
         btnPoint.disabled = false;
         deletePoint();
         displayEverything();
@@ -324,11 +345,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
-
-    btnSubstract.disabled = true;
+/*     btnSubstract.disabled = true;
     btnAdd.disabled = false;
     btnMultiply.disabled = false;
-    btnDivide.disabled = false; 
+    btnDivide.disabled = false;  */
   });
 
   btnMultiply.addEventListener('click', () => {
@@ -359,11 +379,10 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
-
-    btnMultiply.disabled = true;
+/*     btnMultiply.disabled = true;
     btnAdd.disabled = false;
     btnSubstract.disabled = false;
-    btnDivide.disabled = false; 
+    btnDivide.disabled = false;  */
   });
 
   btnDivide.addEventListener('click', () => {
@@ -394,30 +413,28 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
-    btnDivide.disabled = true; 
+/*     btnDivide.disabled = true; 
     btnAdd.disabled = false;
     btnSubstract.disabled = false;
-    btnMultiply.disabled = false;
+    btnMultiply.disabled = false; */
   });
 
   btnEqual.addEventListener('click', () => {
-    if (operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-        operator = '-';
+    if (operands.length === 0) {
+        return
+    } else if (displayValue === 0) {
+        return
     } else if (operands.length === 1) {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
         operate(operands[0], operands[1], operator);
         display.textContent = operands[0];
         operands.pop();
+        operator = '';
     } else {
         operands.push(Number(displayValue.join('')));
         displayValue = [0];
-        operator = '-';
+        operator = '';
     }
   })
   
