@@ -32,6 +32,14 @@ const btnMultiply = document.getElementById('multiply');
 const btnDivide = document.getElementById('divide');
 const btnEqual = document.getElementById('equal');
 
+    let operandOne = 0;
+    let operandTwo = 0;
+    let operator = '';
+
+    let currentDigit = 0; //
+    let displayValue = [0];
+    let operands = [];
+
 const operate = function (numbOne, numbTwo, oPerat) {
     if(oPerat === '+') {
         console.log('sum ' + add(numbOne, numbTwo));
@@ -75,14 +83,6 @@ const operate = function (numbOne, numbTwo, oPerat) {
     })
     return divi;
     }
-
-    let operandOne = 0;
-    let operandTwo = 0;
-    let operator = '';
-
-    let currentDigit = 0; //
-    let displayValue = [0];
-    let operands = [];
 
     const displayFill = function () {
         if (displayValue[0] === 0 & displayValue[1] !== '.') {
@@ -130,6 +130,272 @@ const operate = function (numbOne, numbTwo, oPerat) {
             btnDel.disabled = true;
         }
     }
+
+    //key functions
+    const allKeys = function () {
+        displayFill();
+        enableOperator();
+        displayEverything();
+    }
+
+    const actionPoint = function () {
+        if (operator !== '') {
+            if (display.textContent.includes('.')) {
+                return
+            }
+            currentDigit = '.';
+            displayValue.push(currentDigit);
+            display.textContent = displayValue.join('');
+            btnPoint.disabled = true;
+            displayEverything();
+        } else {
+            if (display.textContent.includes('.')) {
+                return
+            }
+            currentDigit = '.';
+            displayValue.push(currentDigit);
+            display.textContent = displayValue.join('');
+            btnPoint.disabled = true;
+            console.log(displayValue + ' point') ;
+            displayEverything();
+        }
+    }
+
+    const actionDelete = function () {
+        displayValue.pop();
+        //make current value 0 so it would not
+        //dissapear from the screen 
+        if (displayValue.length === 1 && displayValue[0] === '-') {
+            displayValue = [0];
+            display.textContent = displayValue.join[''];
+        }
+        if (displayValue.length < 1) {
+            displayValue = [0];
+            display.textContent = displayValue[0];
+        } else {
+          display.textContent = displayValue.join('');
+        }
+            //zero operans if there is only one char displayed
+        if(displayValue.length === 1) {
+            operands = [];
+        }
+        displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
+        //shrinkFont();
+        //---------------
+        console.log(displayValue + ' del') ;
+        displayEverything();
+    }
+
+
+    const actionAdd = function () {
+        btnAdd.classList.add('active');
+        btnSubstract.classList.remove('active');
+        btnMultiply.classList.remove('active');
+        btnDivide.classList.remove('active');
+
+        if (operator !== '+' && operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+            operator = '+';
+        } else if (operator === '+' & operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+        } else {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operator = '+';
+        }
+
+        btnPoint.disabled = false;
+        deletePoint();
+        displayEverything();
+    }
+
+    const actionSubstract = function () {
+        btnSubstract.classList.add('active');
+    btnAdd.classList.remove('active');
+    btnMultiply.classList.remove('active');
+    btnDivide.classList.remove('active');
+
+    if (operator !== '-' && operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
+        operator = '-';
+    } else if (operator === '-' & operands.length === 1) {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operate(operands[0], operands[1], operator);
+        display.textContent = operands[0];
+        operands.pop();
+    } else {
+        operands.push(Number(displayValue.join('')));
+        displayValue = [0];
+        operator = '-';
+    }
+    
+    btnPoint.disabled = false;
+    deletePoint();
+    displayEverything();
+    }
+
+    const actionMultiply = function () {
+        btnMultiply.classList.add('active');
+        btnSubstract.classList.remove('active');
+        btnAdd.classList.remove('active');
+        btnDivide.classList.remove('active');
+        
+        if (operator !== '*' && operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+            operator = '*';
+        } else if (operator === '*' & operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+        } else {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operator = '*';
+        }
+        
+        btnPoint.disabled = false;
+        deletePoint();
+        displayEverything();
+    }
+
+    const actionDivide = function () {
+        btnDivide.classList.add('active');
+        btnSubstract.classList.remove('active');
+        btnMultiply.classList.remove('active');
+        btnAdd.classList.remove('active');
+
+        if (operator !== '/' && operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+            operator = '/';
+        } else if (operator === '/' & operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+        } else {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operator = '/';
+        }
+        
+        btnPoint.disabled = false;
+        deletePoint();
+        displayEverything();
+    }
+
+    const actionEqal = function () {
+        if (operands.length === 0) {
+            return
+        } else if (displayValue === 0) {
+            return
+        } else if (operands.length === 1) {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operate(operands[0], operands[1], operator);
+            display.textContent = operands[0];
+            operands.pop();
+            operator = '';
+        } else {
+            operands.push(Number(displayValue.join('')));
+            displayValue = [0];
+            operator = '';
+        }
+    }
+
+    //key inputs
+    window.addEventListener('keydown', (event) => {
+        if (event.key === '1') {
+            event.preventDefault();
+            currentDigit = 1;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '2') {
+            event.preventDefault();
+            currentDigit = 2;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '3') {
+            event.preventDefault();
+            currentDigit = 3;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '4') {
+            event.preventDefault();
+            currentDigit = 4;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '5') {
+            event.preventDefault();
+            currentDigit = 5;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '6') {
+            event.preventDefault();
+            currentDigit = 6;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '7') {
+            event.preventDefault();
+            currentDigit = 7;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '8') {
+            event.preventDefault();
+            currentDigit = 8;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '9') {
+            event.preventDefault();
+            currentDigit = 9;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '0') {
+            event.preventDefault();
+            currentDigit = 0;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        } else if (event.key === '+') {
+            currentDigit = 2;
+            displayFill();
+            enableOperator();
+            displayEverything();
+        }
+
+    })
 
 
     //input
@@ -195,52 +461,11 @@ const operate = function (numbOne, numbTwo, oPerat) {
       });
 
       btnPoint.addEventListener('click', () => {
-        if (operator !== '') {
-            if (display.textContent.includes('.')) {
-                return
-            }
-            currentDigit = '.';
-            displayValue.push(currentDigit);
-            display.textContent = displayValue.join('');
-            btnPoint.disabled = true;
-            displayEverything();
-        } else {
-            if (display.textContent.includes('.')) {
-                return
-            }
-            currentDigit = '.';
-            displayValue.push(currentDigit);
-            display.textContent = displayValue.join('');
-            btnPoint.disabled = true;
-            console.log(displayValue + ' point') ;
-            displayEverything();
-        }
-
+        actionPoint();
       })
 
       btnDel.addEventListener('click', () => {
-        displayValue.pop();
-        //make current value 0 so it would not
-        //dissapear from the screen 
-        if (displayValue.length === 1 && displayValue[0] === '-') {
-            displayValue = [0];
-            display.textContent = displayValue.join[''];
-        }
-        if (displayValue.length < 1) {
-            displayValue = [0];
-            display.textContent = displayValue[0];
-        } else {
-          display.textContent = displayValue.join('');
-        }
-            //zero operans if there is only one char displayed
-        if(displayValue.length === 1) {
-            operands = [];
-        }
-        displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
-        //shrinkFont();
-        //---------------
-        console.log(displayValue + ' del') ;
-        displayEverything();
+        actionDelete();
       });
       btnClear.addEventListener('click', () => {
         currentDigit = 0;
@@ -254,174 +479,32 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayEverything();
       });
 
-          //toggle between positive and negative numbers
-        btnPosNeg.addEventListener('click', () => {
-        if(displayValue[0] === '-') {
-          displayValue.splice(0, 1);
-          display.textContent = displayValue.join('');
-        } /* else if (displayValue[0] === 0 && operands.length < 1) {
-          displayValue = [0];
-          display.textContent = displayValue.join('');
-        }  */else {
-          if (displayValue.length > 0 && 
-              displayValue[0] !== 0) {
-              displayValue.unshift('-');
-          }
-          display.textContent = displayValue.join('');
-        }
-        deletePoint();
-        console.log(displayValue + ' pos/neg') ;
-        displayEverything();
-      })
-    
+
 
 //highlight operator buttton
 //being clicked
 
 
 
-    btnAdd.addEventListener('click', () => {
-        btnAdd.classList.add('active');
-        btnSubstract.classList.remove('active');
-        btnMultiply.classList.remove('active');
-        btnDivide.classList.remove('active');
-
-        if (operator !== '+' && operands.length === 1) {
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-            operate(operands[0], operands[1], operator);
-            display.textContent = operands[0];
-            operands.pop();
-            operator = '+';
-        } else if (operator === '+' & operands.length === 1) {
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-            operate(operands[0], operands[1], operator);
-            display.textContent = operands[0];
-            operands.pop();
-        } else {
-            operands.push(Number(displayValue.join('')));
-            displayValue = [0];
-            operator = '+';
-        }
-
-        btnPoint.disabled = false;
-        deletePoint();
-        displayEverything();
+  btnAdd.addEventListener('click', () => {
+    actionAdd();
   });
 
 
   btnSubstract.addEventListener('click', () => {
-    btnSubstract.classList.add('active');
-    btnAdd.classList.remove('active');
-    btnMultiply.classList.remove('active');
-    btnDivide.classList.remove('active');
-
-    if (operator !== '-' && operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-        operator = '-';
-    } else if (operator === '-' & operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-    } else {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operator = '-';
-    }
-    
-    btnPoint.disabled = false;
-    deletePoint();
-    displayEverything();
+    actionSubstract();
   });
 
   btnMultiply.addEventListener('click', () => {
-    btnMultiply.classList.add('active');
-    btnSubstract.classList.remove('active');
-    btnAdd.classList.remove('active');
-    btnDivide.classList.remove('active');
-    
-    if (operator !== '*' && operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-        operator = '*';
-    } else if (operator === '*' & operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-    } else {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operator = '*';
-    }
-    
-    btnPoint.disabled = false;
-    deletePoint();
-    displayEverything();
+    actionMultiply();
   });
 
   btnDivide.addEventListener('click', () => {
-    btnDivide.classList.add('active');
-    btnSubstract.classList.remove('active');
-    btnMultiply.classList.remove('active');
-    btnAdd.classList.remove('active');
-
-    if (operator !== '/' && operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-        operator = '/';
-    } else if (operator === '/' & operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-    } else {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operator = '/';
-    }
-    
-    btnPoint.disabled = false;
-    deletePoint();
-    displayEverything();
-/*     btnDivide.disabled = true; 
-    btnAdd.disabled = false;
-    btnSubstract.disabled = false;
-    btnMultiply.disabled = false; */
+    actionDivide();
   });
 
   btnEqual.addEventListener('click', () => {
-    if (operands.length === 0) {
-        return
-    } else if (displayValue === 0) {
-        return
-    } else if (operands.length === 1) {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operate(operands[0], operands[1], operator);
-        display.textContent = operands[0];
-        operands.pop();
-        operator = '';
-    } else {
-        operands.push(Number(displayValue.join('')));
-        displayValue = [0];
-        operator = '';
-    }
+    actionEqal();
   })
   
  
