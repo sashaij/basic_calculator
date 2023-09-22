@@ -389,14 +389,33 @@ const operate = function (numbOne, numbTwo, oPerat) {
             enableOperator();
             displayEverything();
         } else if (event.key === '+') {
-            currentDigit = 2;
-            displayFill();
-            enableOperator();
-            displayEverything();
-        }
+            event.preventDefault();
+            actionAdd();
+        } else if (event.key === '-') {
+            event.preventDefault();
+            actionSubstract();
+        } else if (event.key === '*') {
+            event.preventDefault();
+            actionMultiply();
+        } else if (event.key === '/') {
+            event.preventDefault();
+            actionDivide();
+        } else if (event.key === 'Backspace' || event.key === 'Delete') {
+            event.preventDefault();
+            actionDelete();
+        } else if (event.key === 'Enter') {
+            event.preventDefault();
+            actionEqal();
+        } else if (event.key === '.') {
+            event.preventDefault();
+            actionPoint();
+        } 
 
     })
 
+    window.addEventListener('keydown', (event) => {
+        console.log(event);
+    })
 
     //input
       btnOne.addEventListener('click', () => {
