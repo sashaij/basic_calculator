@@ -32,12 +32,14 @@ const btnMultiply = document.getElementById('multiply');
 const btnDivide = document.getElementById('divide');
 const btnEqual = document.getElementById('equal');
 
-    let operandOne = 0;
-    let operandTwo = 0;
+
     let operator = '';
 
+    //last digit input
     let currentDigit = 0; //
+    //array to form number
     let displayValue = [0];
+    //arr that holds operands
     let operands = [];
 
 const operate = function (numbOne, numbTwo, oPerat) {
@@ -73,6 +75,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     };
 
     const divide = function (numb1, ...numbs) {
+        //returns error when dividing by zero
         if (numbs === 0) {
             displayValue = [0];
             return display.textContent = 'Error';
@@ -180,11 +183,20 @@ const operate = function (numbOne, numbTwo, oPerat) {
             operands = [];
         }
         displayValue.includes('.') ? btnPoint.disabled = true : btnPoint.disabled = false;
-        //shrinkFont();
-        //---------------
+        shrinkFont();
         console.log(displayValue + ' del') ;
         displayEverything();
     }
+
+    const shrinkFont = function () {
+        if (display.textContent.length > 12 && display.textContent.length < 24) {
+          display.style.fontSize = '1rem'
+        } else if (display.textContent.length > 24) {
+          display.style.fontSize = '.5rem';
+        } else if (display.textContent.length < 12) {
+          display.style.fontSize = '2rem';
+        }
+      }
 
 
     const actionAdd = function () {
@@ -215,6 +227,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnPoint.disabled = false;
         deletePoint();
         displayEverything();
+        shrinkFont();
     }
 
     const actionSubstract = function () {
@@ -245,6 +258,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
     btnPoint.disabled = false;
     deletePoint();
     displayEverything();
+    shrinkFont();
     }
 
     const actionMultiply = function () {
@@ -275,6 +289,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnPoint.disabled = false;
         deletePoint();
         displayEverything();
+        shrinkFont();
     }
 
     const actionDivide = function () {
@@ -305,6 +320,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         btnPoint.disabled = false;
         deletePoint();
         displayEverything();
+        shrinkFont();
     }
 
     const actionEqal = function () {
@@ -324,6 +340,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
             displayValue = [0];
             operator = '';
         }
+        shrinkFont();
     }
 
     //key inputs
@@ -334,81 +351,98 @@ const operate = function (numbOne, numbTwo, oPerat) {
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '2') {
             event.preventDefault();
             currentDigit = 2;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '3') {
             event.preventDefault();
             currentDigit = 3;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '4') {
             event.preventDefault();
             currentDigit = 4;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '5') {
             event.preventDefault();
             currentDigit = 5;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '6') {
             event.preventDefault();
             currentDigit = 6;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '7') {
             event.preventDefault();
             currentDigit = 7;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '8') {
             event.preventDefault();
             currentDigit = 8;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '9') {
             event.preventDefault();
             currentDigit = 9;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '0') {
             event.preventDefault();
             currentDigit = 0;
             displayFill();
             enableOperator();
             displayEverything();
+            shrinkFont();
         } else if (event.key === '+') {
             event.preventDefault();
             actionAdd();
+            shrinkFont();
         } else if (event.key === '-') {
             event.preventDefault();
             actionSubstract();
+            shrinkFont();
         } else if (event.key === '*') {
             event.preventDefault();
             actionMultiply();
+            shrinkFont();
         } else if (event.key === '/') {
             event.preventDefault();
             actionDivide();
+            shrinkFont();
         } else if (event.key === 'Backspace' || event.key === 'Delete') {
             event.preventDefault();
             actionDelete();
+            shrinkFont();
         } else if (event.key === 'Enter') {
             event.preventDefault();
             actionEqal();
+            shrinkFont();
         } else if (event.key === '.') {
             event.preventDefault();
             actionPoint();
+            shrinkFont();
         } 
 
     })
@@ -423,68 +457,80 @@ const operate = function (numbOne, numbTwo, oPerat) {
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnTwo.addEventListener('click', () => {
         currentDigit = 2;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnThree.addEventListener('click', () => {
         currentDigit = 3;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnFour.addEventListener('click', () => {
         currentDigit = 4;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnFive.addEventListener('click', () => {
         currentDigit = 5;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnSix.addEventListener('click', () => {
         currentDigit = 6;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnSeven.addEventListener('click', () => {
         currentDigit = 7;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnEight.addEventListener('click', () => {
         currentDigit = 8;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnNine.addEventListener('click', () => {
         currentDigit = 9;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
       btnZero.addEventListener('click', () => {
         currentDigit = 0;
         displayFill();
         enableOperator();
         displayEverything();
+        shrinkFont();
       });
 
       btnPoint.addEventListener('click', () => {
         actionPoint();
+        shrinkFont();
       })
 
       btnDel.addEventListener('click', () => {
         actionDelete();
+        shrinkFont();
       });
       btnClear.addEventListener('click', () => {
         currentDigit = 0;
@@ -496,6 +542,7 @@ const operate = function (numbOne, numbTwo, oPerat) {
         console.log(displayValue + ' clear') ;
         operands = [];
         displayEverything();
+        shrinkFont();
       });
 
 
